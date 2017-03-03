@@ -19,26 +19,25 @@ public class Laucher extends Application implements EventHandler
     Button endButton;
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+ 
 	    primaryStage.setTitle("BombLaucher");
 	    HBox topMenu = new HBox();
 	    startButton = new Button("Start");
 	    startButton.setPrefSize(250,50);
-	    
 	    topMenu.getChildren().addAll(startButton);
 	    
 	    
-	    HBox left = new HBox();
+	    HBox center = new HBox();
 	    optionsButton = new Button("Options");
 	    endButton = new Button("End Game");
 
-	    left.getChildren().addAll(optionsButton,endButton);
+	    center.getChildren().addAll(optionsButton,endButton);
 	    endButton.setOnAction(actionEvent -> Platform.exit());
 	   
 	    
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setTop(topMenu);
-	    borderPane.setBottom(left);
+	    borderPane.setCenter(center);
 
 
 
