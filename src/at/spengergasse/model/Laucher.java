@@ -23,7 +23,8 @@ public class Laucher extends Application implements EventHandler
 	    primaryStage.setTitle("BombLaucher");
 	    HBox topMenu = new HBox();
 	    startButton = new Button("Start");
-	    startButton.setPrefSize(120,30);
+	    startButton.setPrefSize(250,50);
+	    
 	    topMenu.getChildren().addAll(startButton);
 	    
 	    
@@ -37,12 +38,12 @@ public class Laucher extends Application implements EventHandler
 	    
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setTop(topMenu);
-	    borderPane.setCenter(left);
+	    borderPane.setBottom(left);
 
 
 
 
-	    Scene scene = new Scene(borderPane, 130,70);
+	    Scene scene = new Scene(borderPane, 500,500);
 
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
