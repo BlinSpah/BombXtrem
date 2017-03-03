@@ -37,7 +37,7 @@ public class Laucher extends Application implements EventHandler
 	    
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setTop(topMenu);
-	    borderPane.setCenter(center);
+	    borderPane.setCenter(center); // center
 
 
 
