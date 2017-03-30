@@ -6,13 +6,15 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class Laucher extends Application implements EventHandler
+public class Laucher extends Application 
 {
     Button startButton;
     Button optionsButton;
@@ -21,28 +23,34 @@ public class Laucher extends Application implements EventHandler
     public void start(Stage primaryStage) throws Exception{
  
 	    primaryStage.setTitle("BombLaucher");
-	    HBox center = new HBox();
-	    startButton = new Button("Start");
-	    startButton.setPrefSize(250,50);
-	    center.getChildren().addAll(startButton);
+	  
 	    
+	    GridPane grid = new GridPane();
+	    grid.setHgap(10);
+	    grid.setVgap(10);
+	    grid.setPadding(new Insets(10,10,10,10));
 	    
-	    HBox bottom = new HBox();
-	    optionsButton = new Button("Options");
-	    endButton = new Button("End Game");
+	    Button startButton = new Button(" Start");
+	    startButton.setPrefSize(90, 35);
+	    Button optionsButton = new Button("options");
+	    optionsButton.setPrefSize(90, 35);
+	    Button endButton = new Button("End");
+	    endButton.setPrefSize(90, 35);
+	    
+	    grid.add(startButton, 0, 0);
+	    grid.add(optionsButton,0, 1);
+	    grid.add(endButton, 0, 2);
 
-	    bottom.getChildren().addAll(optionsButton,endButton);
 	    endButton.setOnAction(actionEvent -> Platform.exit());
 	   
-	    
 	    BorderPane borderPane = new BorderPane();
-	    borderPane.setCenter(center);//center
-	    borderPane.setBottom(bottom); //Bottom
+	    borderPane.setCenter(grid);//center
+	  
 
 
 
 
-	    Scene scene = new Scene(borderPane, 500,500);
+	    Scene scene = new Scene(borderPane , 110,150);
 
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
@@ -58,7 +66,6 @@ public class Laucher extends Application implements EventHandler
 
 
 
-	@Override
 	public void handle(Event event)
 	{
 	  if(event.getSource() == startButton)
