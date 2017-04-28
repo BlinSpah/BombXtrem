@@ -54,6 +54,10 @@ public class Laucher extends Application
 
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
+	    
+	    
+	    
+	    
 	}
 
     	
