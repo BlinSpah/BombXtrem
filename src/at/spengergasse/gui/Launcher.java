@@ -24,7 +24,7 @@ public class Launcher extends Application
     @Override
     public void start(Stage primaryStage) throws Exception{
  
-	    primaryStage.setTitle("BombLaucher");
+	    primaryStage.setTitle("BombLauncher");
 	  
 	    
 	    GridPane grid = new GridPane();
@@ -57,6 +57,7 @@ public class Launcher extends Application
 
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
+	    primaryStage.centerOnScreen();
 	    
 	    
 	    
