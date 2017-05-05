@@ -1,18 +1,28 @@
 package at.spengergasse.gui;
 
+
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class MainGame extends Application
+public class Laucher extends Application 
 {
-	public void start(Stage primaryStage) throws Exception{
-		 
-	    primaryStage.setTitle("BombXtrem");
+    Button startButton;
+    Button optionsButton;
+    Button endButton;
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+ 
+	    primaryStage.setTitle("BombLauncher");
 	  
 	    
 	    GridPane grid = new GridPane();
@@ -38,10 +48,33 @@ public class MainGame extends Application
 
 
 
-	    //BorderPaneSize(600/600)
+
 	    Scene scene = new Scene(borderPane , 110,150);
 
 	    primaryStage.setScene(scene);
-
+	    primaryStage.show();
+	    
+	    
+	    
+	    
 	}
+
+	public static void main(String[] args) {
+	    launch(args);
+	}
+
+	
+	
+	
+	
+
+
+
+	public void handle(Event event)
+	{
+	  if(event.getSource() == startButton)
+	  {
+	    
+	  }
+	}	
 }
