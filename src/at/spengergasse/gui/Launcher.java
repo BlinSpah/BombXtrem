@@ -1,4 +1,4 @@
-package at.spengergasse.model;
+package at.spengergasse.gui;
 
 
 import javafx.application.Application;
@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class Laucher extends Application 
+public class Launcher extends Application 
 {
     Button startButton;
     Button optionsButton;

@@ -8,7 +8,9 @@ public class Player {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
 	}
-
+	public void bombSetzen(){
+		
+	}
 	
 	public boolean isTot() {
 		return tot;

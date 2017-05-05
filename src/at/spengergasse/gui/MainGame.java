@@ -1,4 +1,4 @@
-package at.spengergasse.model;
+package at.spengergasse.gui;
 
 public class MainGame
 {
