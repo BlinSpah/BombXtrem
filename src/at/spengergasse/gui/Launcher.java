@@ -9,6 +9,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -42,7 +44,8 @@ public class Launcher extends Application
 	    grid.add(endButton, 0, 2);
 
 	    endButton.setOnAction(actionEvent -> Platform.exit());
-	   
+	    endButton.setGraphic(new ImageView(new Image(MainGame.class.getResourceAsStream("UnzerstoerbarerBlock.png"))));
+	    
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setCenter(grid);//center
 	  
