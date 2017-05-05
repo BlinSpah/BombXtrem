@@ -25,8 +25,9 @@ public class Launcher extends Stage{
     final private List<String> args;
   
     public Launcher(List<String> args) throws Exception{
-    	this.args=args;
-      
+    	this.args=args; 
+    	
+	   setTitle("BombLauncher");
 	    GridPane grid = new GridPane();
 	    grid.setHgap(10);
 	    grid.setVgap(10);
@@ -49,8 +50,10 @@ public class Launcher extends Stage{
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setCenter(grid);//center
 	    Scene scene = new Scene(borderPane , 110,150);
+
 	    setScene(scene);
 	    show();	       	    
+	   
 	}
 
 

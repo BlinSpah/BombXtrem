@@ -24,12 +24,11 @@ public class MainGame extends Application
 	    borderPane.setCenter(grid);//center
 	  
 
-
-
 	    //BorderPaneSize(600/600)
 	    Scene scene = new Scene(borderPane , 600,600);
 
 	    primaryStage.setScene(scene);
-
+	    primaryStage.setResizable(false);
+	    primaryStage.centerOnScreen();
 	}
 }
