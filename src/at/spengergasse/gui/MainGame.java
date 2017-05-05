@@ -19,19 +19,7 @@ public class MainGame extends Application
 	    grid.setHgap(10);
 	    grid.setVgap(10);
 	    grid.setPadding(new Insets(10,10,10,10));
-	    
-	    Button startButton = new Button(" Start");
-	    startButton.setPrefSize(90, 35);
-	    Button optionsButton = new Button("options");
-	    optionsButton.setPrefSize(90, 35);
-	    Button endButton = new Button("End");
-	    endButton.setPrefSize(90, 35);
-	    
-	    grid.add(startButton, 0, 0);
-	    grid.add(optionsButton,0, 1);
-	    grid.add(endButton, 0, 2);
-
-	   
+	       
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setCenter(grid);//center
 	  
@@ -39,7 +27,7 @@ public class MainGame extends Application
 
 
 	    //BorderPaneSize(600/600)
-	    Scene scene = new Scene(borderPane , 110,150);
+	    Scene scene = new Scene(borderPane , 600,600);
 
 	    primaryStage.setScene(scene);
 

@@ -1,6 +1,8 @@
 package at.spengergasse.gui;
 
 
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,17 +18,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class Launcher extends Application 
-{
+public class Launcher extends Stage{
     Button startButton;
     Button optionsButton;
     Button endButton;
-    @Override
-    public void start(Stage primaryStage) throws Exception{
- 
-	    primaryStage.setTitle("BombLaucher");
-	  
-	    
+    final private List<String> args;
+  
+    public Launcher(List<String> args) throws Exception{
+    	this.args=args;
+      
 	    GridPane grid = new GridPane();
 	    grid.setHgap(10);
 	    grid.setVgap(10);
@@ -43,42 +43,42 @@ public class Launcher extends Application
 	    grid.add(optionsButton,0, 1);
 	    grid.add(endButton, 0, 2);
 
-	    endButton.setOnAction(actionEvent -> Platform.exit());
+	    
 	    endButton.setGraphic(new ImageView(new Image(MainGame.class.getResourceAsStream("UnzerstoerbarerBlock.png"))));
 	    
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setCenter(grid);//center
-	  
-
-
-
-
 	    Scene scene = new Scene(borderPane , 110,150);
-
-	    primaryStage.setScene(scene);
-	    primaryStage.show();
-	    
-	    
-	    
-	    
+	    setScene(scene);
+	    show();	       	    
 	}
 
-	public static void main(String[] args) {
-	    launch(args);
+
+	public Button getStartButton() {
+		return startButton;
+	}
+
+	public void setStartButton(Button startButton) {
+		this.startButton = startButton;
+	}
+
+	public Button getOptionsButton() {
+		return optionsButton;
+	}
+
+	public void setOptionsButton(Button optionsButton) {
+		this.optionsButton = optionsButton;
+	}
+
+	public Button getEndButton() {
+		return endButton;
+	}
+
+	public void setEndButton(Button endButton) {
+		this.endButton = endButton;
 	}
 
 	
 	
 	
-	
-
-
-
-	public void handle(Event event)
-	{
-	  if(event.getSource() == startButton)
-	  {
-	    
-	  }
-	}	
 }

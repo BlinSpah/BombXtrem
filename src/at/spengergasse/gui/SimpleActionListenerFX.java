@@ -7,8 +7,10 @@ package at.spengergasse.gui;
 
 
 import at.spengergasse.model.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.stage.Stage;
 
 
 public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
@@ -33,7 +35,17 @@ public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 		// get component which is source of the event
 		Object source=arg0.getSource();
 		//**********************************************************************
-	
+		if(source == launcher.getStartButton()){
+			try {
+				maingame.start(new Stage());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		if(source == launcher.getEndButton()){
+			launcher.close();
+		}
+		}
 	
 		}
 	}
