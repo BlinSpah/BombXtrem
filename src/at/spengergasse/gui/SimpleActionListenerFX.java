@@ -25,6 +25,7 @@ public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 		this.launcher=launcher;
 		this.maingame=maingame;
 		player = new Player(false);
+		
 	}
 
 	/* (non-Javadoc)
