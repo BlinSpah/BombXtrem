@@ -1,4 +1,4 @@
-package at.spengergasse.model;
+package at.spengergasse.gui;
 
 
 import javafx.application.Application;
@@ -22,7 +22,7 @@ public class Laucher extends Application
     @Override
     public void start(Stage primaryStage) throws Exception{
  
-	    primaryStage.setTitle("BombLaucher");
+	    primaryStage.setTitle("BombLauncher");
 	  
 	    
 	    GridPane grid = new GridPane();
@@ -41,7 +41,6 @@ public class Laucher extends Application
 	    grid.add(optionsButton,0, 1);
 	    grid.add(endButton, 0, 2);
 
-	    endButton.setOnAction(actionEvent -> Platform.exit());
 	   
 	    BorderPane borderPane = new BorderPane();
 	    borderPane.setCenter(grid);//center
