@@ -19,14 +19,18 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Launcher extends Stage{
-    Button startButton;
-    Button optionsButton;
-    Button endButton;
+    final private Button startButton;
+    final private Button optionsButton;
+    final private Button endButton;
     final private List<String> args;
-  
+    final private SimpleActionListenerFX simpleListener;	
+   
     public Launcher(List<String> args) throws Exception{
     	this.args=args; 
-    	
+    	startButton = new Button("Start");
+    	optionsButton=new Button("Options");
+    	endButton = new Button();
+    	simpleListener = new SimpleActionListenerFX(this);
 	   setTitle("BombLauncher");
 	    GridPane grid = new GridPane();
 	    grid.setHgap(10);
@@ -38,6 +42,7 @@ public class Launcher extends Stage{
 	    Button optionsButton = new Button("options");
 	    optionsButton.setPrefSize(90, 35);
 	    Button endButton = new Button("End");
+	    endButton.addEventHandler(ActionEvent.ACTION, simpleListener);
 	    endButton.setPrefSize(90, 35);
 	    
 	    grid.add(startButton, 0, 0);
@@ -56,30 +61,23 @@ public class Launcher extends Stage{
 	   
 	}
 
-
 	public Button getStartButton() {
 		return startButton;
 	}
 
-	public void setStartButton(Button startButton) {
-		this.startButton = startButton;
-	}
+	
 
 	public Button getOptionsButton() {
 		return optionsButton;
 	}
 
-	public void setOptionsButton(Button optionsButton) {
-		this.optionsButton = optionsButton;
-	}
+
 
 	public Button getEndButton() {
 		return endButton;
 	}
 
-	public void setEndButton(Button endButton) {
-		this.endButton = endButton;
-	}
+
 
 	
 	

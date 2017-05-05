@@ -17,13 +17,12 @@ public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 	
 	// reference to panel
 	final private Launcher launcher;
-	final private MainGame maingame;
 	// reference to the model
 	private Player player;
 	
-	public SimpleActionListenerFX(Launcher launcher,MainGame maingame ){
+	public SimpleActionListenerFX(Launcher launcher){
 		this.launcher=launcher;
-		this.maingame=maingame;
+	
 		player = new Player(false);
 		
 	}
@@ -38,7 +37,7 @@ public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 		//**********************************************************************
 		if(source == launcher.getStartButton()){
 			try {
-				maingame.start(new Stage());
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
