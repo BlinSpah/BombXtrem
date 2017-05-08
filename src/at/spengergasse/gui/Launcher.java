@@ -2,79 +2,95 @@ package at.spengergasse.gui;
 
 
 import java.util.List;
-
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Launcher extends Stage{
-    final private Button startButton;
-    final private Button optionsButton;
-    final private Button endButton;
-    final private List<String> args;
-    final private SimpleActionListenerFX simpleListener;	
-   
-    public Launcher(List<String> args) throws Exception{
-    	this.args=args; 
-    	startButton = new Button("Start");
-    	optionsButton=new Button("Options");
-    	endButton = new Button();
-    	simpleListener = new SimpleActionListenerFX(this);
-	   setTitle("BombLauncher");
-	    GridPane grid = new GridPane();
-	    grid.setHgap(10);
-	    grid.setVgap(10);
-	    grid.setPadding(new Insets(10,10,10,10));
-	    
-	    Button startButton = new Button(" Start");
-	    startButton.setPrefSize(90, 35);
-	    Button optionsButton = new Button("options");
-	    optionsButton.setPrefSize(90, 35);
-	    Button endButton = new Button("End");
-	    endButton.addEventHandler(ActionEvent.ACTION, simpleListener);
-	    endButton.setPrefSize(90, 35);
-	    
-	    grid.add(startButton, 0, 0);
-	    grid.add(optionsButton,0, 1);
-	    grid.add(endButton, 0, 2);
+public class Launcher extends Stage {
 
-	    
-	    endButton.setGraphic(new ImageView(new Image(MainGame.class.getResourceAsStream("UnzerstoerbarerBlock.png"))));
-	    
-	    BorderPane borderPane = new BorderPane();
-	    borderPane.setCenter(grid);//center
-	    Scene scene = new Scene(borderPane , 110,150);
+	final private Button startBTN;
+	final private Button optionsBTN;
+	final private Button closeBTN;	
+	final private SimpleActionListenerFX listener;	
+	final private List<String> args;
+	
+	public Launcher(List<String> args){	
 
-	    setScene(scene);
-	    show();	       	    
-	   
+		this.args=args;
+		listener=new SimpleActionListenerFX(this);
+		
+		
+		VBox vBox=new VBox();
+		BorderPane borderPane=new BorderPane();
+		GridPane gridPane=new GridPane();
+		gridPane.setPadding(new Insets(10,10,10,10));
+
+		// gap between the components
+		gridPane.setHgap(10);
+		gridPane.setVgap(10);
+
+		FlowPane buttonPane=new FlowPane();	
+		closeBTN=new Button("Close");
+		closeBTN.addEventHandler(ActionEvent.ACTION, listener);
+		startBTN = new Button("Start");
+		startBTN.addEventHandler(ActionEvent.ACTION, listener);
+		optionsBTN = new Button("Options");
+		optionsBTN.addEventHandler(ActionEvent.ACTION, listener);
+		HBox hBox=new HBox();
+		hBox.setPadding(new Insets(2, 2, 2, 2));
+
+		buttonPane.getChildren().add(startBTN);
+		buttonPane.getChildren().add(hBox);
+		buttonPane.getChildren().add(closeBTN);
+		
+		borderPane.setBottom(buttonPane);
+		borderPane.setCenter(gridPane);
+		
+	
+		setTitle("BombLauncher");
+		setResizable(false);
+		centerOnScreen();
+
+        vBox.getChildren().addAll(borderPane);
+
+		// set the scene and add borderpane to the scene
+		Scene scene=new Scene(vBox, 460, 170);
+		setScene(scene);
+
+		// show frame
+		show();
+
 	}
 
-	public Button getStartButton() {
-		return startButton;
+	public Button getStartBTN() {
+		return startBTN;
 	}
 
 	
 
-	public Button getOptionsButton() {
-		return optionsButton;
+	public Button getOptionsBTN() {
+		return optionsBTN;
 	}
 
 
 
-	public Button getEndButton() {
-		return endButton;
+	public Button getCloseBTN() {
+		return closeBTN;
 	}
 
 

@@ -3,6 +3,7 @@ package at.spengergasse.model;
 public class Player {
 	private boolean tot;
 	private Bombe bomb;
+	private int leben;
 	
 	public Player(boolean tot) {
 		// TODO Auto-generated constructor stub

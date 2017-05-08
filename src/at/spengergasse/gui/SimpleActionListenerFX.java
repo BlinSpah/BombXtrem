@@ -4,27 +4,36 @@ package at.spengergasse.gui;
  */
 
 
+import java.io.IOException;
+import java.util.Locale;
 
-
-import at.spengergasse.model.*;
-import javafx.application.Platform;
+import at.spengergasse.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
-
+/**
+ * @author Leo Fanzott
+ *
+ */
 public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 	
 	// reference to panel
-	final private Launcher launcher;
+	final private Launcher simpleFrame;
 	// reference to the model
 	private Player player;
 	
-	public SimpleActionListenerFX(Launcher launcher){
-		this.launcher=launcher;
+	/**
+	 * 
+	 * @param simpleFrame
+	 */
+	public SimpleActionListenerFX(Launcher simpleFrame){
+		this.simpleFrame=simpleFrame;
+		player=new Player(false);
+		// set values of the text fields
 	
-		player = new Player(false);
-		
 	}
 
 	/* (non-Javadoc)
@@ -35,17 +44,16 @@ public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 		// get component which is source of the event
 		Object source=arg0.getSource();
 		//**********************************************************************
-		if(source == launcher.getStartButton()){
-			try {
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		// calculate button
+		if (source==simpleFrame.getStartBTN()){
+			
 			}
-		if(source == launcher.getEndButton()){
-			launcher.close();
-		}
-		}
-	
+
+		//**********************************************************************
+		// close
+		if (source==simpleFrame.getCloseBTN()){
+			simpleFrame.close();
 		}
 	}
+
+}
