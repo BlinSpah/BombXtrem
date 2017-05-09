@@ -40,7 +40,6 @@ public class Launcher extends Stage {
 		GridPane gridPane=new GridPane();
 		gridPane.setPadding(new Insets(10,10,10,10));
 
-		// gap between the components
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
 
@@ -68,11 +67,9 @@ public class Launcher extends Stage {
 
         vBox.getChildren().addAll(borderPane);
 
-		// set the scene and add borderpane to the scene
 		Scene scene=new Scene(vBox, 460, 170);
 		setScene(scene);
 
-		// show frame
 		show();
 
 	}

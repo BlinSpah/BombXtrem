@@ -4,13 +4,24 @@ public class Player {
 	private boolean tot;
 	private Bombe bomb;
 	private int leben;
+	private Position pos;
 	
 	public Player(boolean tot) {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
 	}
-	public void bombSetzen(){
-		
+
+	public void dropBomb(){
+		int bombenImSpiel = 0;
+		if(bombenImSpiel < bomb.getBombenAnzahl()){
+			
+		}
+	}
+	
+	public void playerTot(){
+		if(pos){
+			setTot(true);
+		}
 	}
 	
 	public boolean isTot() {
@@ -20,7 +31,7 @@ public class Player {
 	public void setTot(boolean tot) {
 		this.tot = tot;
 	}
-
 	
+
 
 }
