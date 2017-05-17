@@ -1,6 +1,9 @@
 package at.spengergasse.gui;
 
+import java.util.List;
+
 import javafx.application.Application;
+import javafx.application.Application.Parameters;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,20 +18,18 @@ public class MainGame extends Application
 	    primaryStage.setTitle("BombXtrem");
 	  
 	    
-	    GridPane grid = new GridPane();
-	    grid.setHgap(10);
-	    grid.setVgap(10);
-	    grid.setPadding(new Insets(10,10,10,10));
-	       
-	    BorderPane borderPane = new BorderPane();
-	    borderPane.setCenter(grid);//center
-	  
-
-	    //BorderPaneSize(600/600)
-	    Scene scene = new Scene(borderPane , 600,600);
-
-	    primaryStage.setScene(scene);
-	    primaryStage.setResizable(false);
-	    primaryStage.centerOnScreen();
+		
+		 // print commandline arguments to the terminal window
+		 final Parameters params = getParameters();
+	     final List<String> parameters = params.getRaw();
+	     for (String s:parameters){
+	    	 System.out.println(s);
+	     }
+	     // instanciate frame
+		 new Map(parameters);
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
 	}
 }
