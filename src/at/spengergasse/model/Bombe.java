@@ -3,14 +3,14 @@ package at.spengergasse.model;
 import java.util.ArrayList;
 
 public class Bombe {
-	private int bombenAnzahl;
+	private int bombenCounter =0;
 	private Fire bombFire;
 	private ArrayList<Powerup> powerups;
 	private Position pos;
 	
 	public Bombe() {
 		// TODO Auto-generated constructor stub
-		bombenAnzahl = 1; 
+		
 		powerups = new ArrayList<Powerup>();
 	}
 	
@@ -18,14 +18,10 @@ public class Bombe {
 		if(powerup== null) throw new PowerUpException();
 		powerups.add(powerup);
 	}
+	public void explosion(){
+		
+	}
 	
-	public int getBombenAnzahl() {
-		return bombenAnzahl;
-	}
-
-	public void setBombenAnzahl(int bombenAnzahl) {
-		this.bombenAnzahl = bombenAnzahl;
-	}
 	
 	
 	public ArrayList<Powerup> getPowerups() {

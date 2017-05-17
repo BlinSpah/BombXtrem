@@ -1,28 +1,18 @@
 package at.spengergasse.gui;
 
-import java.util.List;
-
-import com.sun.prism.paint.Color;
-
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Map extends Stage{
 	
-	final private  List<String> args;
 	final private ImageView[] uzb;
+	
      
-	public Map(List<String> args)
-	{
-		this.args = args;
-		
+	public Map()
+	{	
 		GridPane grid = new GridPane();
 		grid.setStyle("-fx-background-color: #202020;");
 		this.uzb = new ImageView[81];
@@ -60,10 +50,10 @@ public class Map extends Stage{
 		for(int i = 1 ;i<=5;i++)
 			grid.add(uzb[75+i], i+i , 10);
 		
-		
-		
-		Scene scene = new Scene(grid , 650,650);
-
+		setTitle("BombXtrem");
+		setResizable(false);
+		Scene scene = new Scene(grid , 640,640);
+	
 	    setScene(scene);
 	    show();		
 	    

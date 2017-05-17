@@ -21,6 +21,7 @@ public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 	
 	// reference to panel
 	final private Launcher simpleFrame;
+	private Map map;
 	// reference to the model
 	private Player player;
 
@@ -35,7 +36,8 @@ public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
 	
 		Object source=arg0.getSource();
 			if (source==simpleFrame.getStartBTN()){
-					
+				simpleFrame.close();
+				map = new Map();
 			}
 
 		if (source==simpleFrame.getCloseBTN()){
