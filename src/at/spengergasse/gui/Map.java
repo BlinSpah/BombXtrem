@@ -1,24 +1,27 @@
 package at.spengergasse.gui;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Map extends Stage{
 	
 	final private ImageView[] uzb;
-	
-     
+	final private SimpleActionListenerFX listener;
+    
 	public Map()
 	{	
+		listener = new SimpleActionListenerFX(this);
 		GridPane grid = new GridPane();
 		grid.setStyle("-fx-background-color: #202020;");
 		this.uzb = new ImageView[81];
-		for(int i = 0 ; i<uzb.length;i++)
-		{
-			uzb[i]= new ImageView(new Image(MainGame.class.getResourceAsStream("UnzerstoerbarerBlock.png")));
+		for(int i = 0 ; i<uzb.length;i++){
+			uzb[i]= new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("UnzerstoerbarerBlock.png")));
 		}
 		//add den Rand
 		
@@ -53,7 +56,7 @@ public class Map extends Stage{
 		setTitle("BombXtrem");
 		setResizable(false);
 		Scene scene = new Scene(grid , 640,640);
-	
+		scene.addEventHandler(KeyEvent.KEY_PRESSED,listener);
 	    setScene(scene);
 	    show();		
 	    

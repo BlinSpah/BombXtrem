@@ -4,45 +4,40 @@ package at.spengergasse.gui;
  */
 
 
-import java.io.IOException;
-import java.util.Locale;
-
 import at.spengergasse.model.Player;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 
-public class SimpleActionListenerFX implements EventHandler<ActionEvent> {
+public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 	
 	// reference to panel
-	final private Launcher simpleFrame;
-	private Map map;
-	// reference to the model
+	final private Map map;
 	private Player player;
 
-	public SimpleActionListenerFX(Launcher simpleFrame){
-		this.simpleFrame=simpleFrame;
-		player=new Player(false);
-	
+	public SimpleActionListenerFX(Map map){
+		this.map=map;
+		player = new Player(false);
 	}
 
 	@Override
-	public void handle(ActionEvent arg0) {
-	
-		Object source=arg0.getSource();
-			if (source==simpleFrame.getStartBTN()){
-				simpleFrame.close();
-				map = new Map();
-			}
-
-		if (source==simpleFrame.getCloseBTN()){
-			simpleFrame.close();
+	public void handle(KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(event.getCode()==KeyCode.LEFT){
+			player.linksBewegen();
+		}
+		else if(event.getCode()== KeyCode.RIGHT){
+			player.rechtsBewegen();
+		}
+		else if(event.getCode()== KeyCode.UP){
+			player.obenBewegen();
+		}
+		else if(event.getCode()==KeyCode.DOWN){
+			player.untenBewegen();
 		}
 	}
+
+	
 
 }

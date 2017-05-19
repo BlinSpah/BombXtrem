@@ -10,7 +10,7 @@ public class SimpleApplicationFX extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {	
 	
-		new Launcher();
+		new Map();
 	}
 
 	/**
