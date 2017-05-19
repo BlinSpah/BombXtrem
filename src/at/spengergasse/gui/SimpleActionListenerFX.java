@@ -3,8 +3,7 @@ package at.spengergasse.gui;
  * 
  */
 
-
-import at.spengergasse.model.Player;
+import at.spengergasse.model.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,23 +17,28 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 
 	public SimpleActionListenerFX(Map map){
 		this.map=map;
-		player = new Player(false);
+		player = new Player(false,new Position(1,1));
+
 	}
 
 	@Override
 	public void handle(KeyEvent event) {
 		// TODO Auto-generated method stub
+		if(event.getCode()==KeyCode.ENTER){
+			map.getGrid().add(player.getPlayer1(), player.getPos().getX(), player.getPos().getY());
+		}
 		if(event.getCode()==KeyCode.LEFT){
-			player.linksBewegen();
+			map.getGrid().add(player.getPlayer1(),player.linksBewegen(), player.getPos().getY());;
+			
 		}
 		else if(event.getCode()== KeyCode.RIGHT){
-			player.rechtsBewegen();
+			map.getGrid().add(player.getPlayer1(),player.rechtsBewegen(), player.getPos().getY());;
 		}
 		else if(event.getCode()== KeyCode.UP){
-			player.obenBewegen();
+			map.getGrid().add(player.getPlayer1(),player.obenBewegen(), player.getPos().getY());;
 		}
 		else if(event.getCode()==KeyCode.DOWN){
-			player.untenBewegen();
+			map.getGrid().add(player.getPlayer1(),player.untenBewegen(), player.getPos().getY());;
 		}
 	}
 

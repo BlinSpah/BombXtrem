@@ -1,32 +1,41 @@
 package at.spengergasse.model;
 
+import at.spengergasse.gui.SimpleApplicationFX;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class Player {
 
 	private boolean tot;
 	private Bombe bomb;
 	private Position pos;
 	private Collision collision;
-	public Player(boolean tot) {
+	private ImageView player1;
+	public Player(boolean tot,Position pos) {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
-		pos = new Position(1, 1);
+		setPos(pos);
+		player1 = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Player1.png")));
 	}
-	public void linksBewegen(){
-		
-			pos.setX(pos.getX()-1);
-		
+	public int linksBewegen(){
+		pos.setX(pos.getX()-1);
+		return pos.getX()-1;
 	}
 	
-	public void rechtsBewegen(){
+	public int rechtsBewegen(){
 		pos.setX(pos.getX()+1);
+		return pos.getX()+1;
+		
 	}
 	
-	public void obenBewegen(){
+	public int obenBewegen(){
 		pos.setY(pos.getY()+1);
+		return pos.getY()+1;
 	}
 	
-	public void untenBewegen(){
-		pos.setY(pos.getY()+1);
+	public int untenBewegen(){
+		pos.setY(pos.getY()-1);
+		return pos.getY()-1;
 	}
 	
 	
@@ -38,9 +47,7 @@ public class Player {
 	
 	
 	public void playerTot(){
-	
-			setTot(true);
-		
+		setTot(true);
 	}
 	
 	public boolean isTot() {
@@ -57,6 +64,12 @@ public class Player {
 	
 	public void setPos(Position pos) {
 		this.pos = pos;
+	}
+	public ImageView getPlayer1() {
+		return player1;
+	}
+	public void setPlayer1(ImageView player1) {
+		this.player1 = player1;
 	}
 	
 

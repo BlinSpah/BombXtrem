@@ -13,21 +13,17 @@ public class Map extends Stage{
 	
 	final private ImageView[] uzb;
 	final private SimpleActionListenerFX listener;
-	final private ImageView player1;
+	final private GridPane grid;
     
-	public Map()
-	{	
-		
-		
+	public Map(){			
 		listener = new SimpleActionListenerFX(this);
-		GridPane grid = new GridPane();
+		grid = new GridPane();
 		grid.setStyle("-fx-background-color: #202020;");
 		this.uzb = new ImageView[81];
 		for(int i = 0 ; i<uzb.length;i++){
 			uzb[i]= new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("UnzerstoerbarerBlock.png")));
 		}
-		//add den Rand
-		
+		//add den Rand	
 		for(int i = 0 ;i<=12;i++)
 		grid.add(uzb[i], 0, i);
 	
@@ -55,21 +51,18 @@ public class Map extends Stage{
 		
 		for(int i = 1 ;i<=5;i++)
 			grid.add(uzb[75+i], i+i , 10);
-		
-		
-		player1 = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Player1.png")));
-		
-		grid.add(player1, 1, 1);
-		
+	
 		setTitle("BombXtrem");
 		setResizable(false);
 		Scene scene = new Scene(grid , 640,640);
 		scene.addEventHandler(KeyEvent.KEY_PRESSED,listener);
 	    setScene(scene);
-	    show();		
-	    
-	    
-	    
+	    show();			    
+	}
+
+	public GridPane getGrid() {
+		return grid;
 	}
 	
+
 }
