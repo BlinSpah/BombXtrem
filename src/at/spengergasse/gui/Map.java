@@ -13,9 +13,12 @@ public class Map extends Stage{
 	
 	final private ImageView[] uzb;
 	final private SimpleActionListenerFX listener;
+	final private ImageView player1;
     
 	public Map()
 	{	
+		
+		
 		listener = new SimpleActionListenerFX(this);
 		GridPane grid = new GridPane();
 		grid.setStyle("-fx-background-color: #202020;");
@@ -52,6 +55,11 @@ public class Map extends Stage{
 		
 		for(int i = 1 ;i<=5;i++)
 			grid.add(uzb[75+i], i+i , 10);
+		
+		
+		player1 = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Player1.png")));
+		
+		grid.add(player1, 1, 1);
 		
 		setTitle("BombXtrem");
 		setResizable(false);
