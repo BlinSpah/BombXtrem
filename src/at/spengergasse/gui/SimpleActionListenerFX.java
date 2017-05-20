@@ -35,21 +35,23 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 		if(event.getCode()==KeyCode.ENTER){	
 			map.getGrid().add(player1.getPlayer(), player1.getPos().getX(), player1.getPos().getY());				
 		}
+		
+		//Player 
 		//Bombe legen
-		if(event.getCode()==KeyCode.SPACE){
-			map.getGrid().add(player.getBomb().getBomb(), player.getPos().getX(), player.getPos().getY());
+		if(event.getCode()==KeyCode.E){
+			map.getGrid().add(player1.getBomb().getBomb(), player1.getPos().getX(), player1.getPos().getY());
 		}
 		//Bewegungen
-		if(event.getCode()==KeyCode.LEFT){
+		if(event.getCode()==KeyCode.A){
 			map.getGrid().add(player1.getPlayer(),player1.linksBewegen(), player1.getPos().getY());
 		}
-		else if(event.getCode()== KeyCode.RIGHT){
+		else if(event.getCode()== KeyCode.D){
 			map.getGrid().add(player1.getPlayer(),player1.rechtsBewegen(), player1.getPos().getY());;
 		}
-		else if(event.getCode()== KeyCode.UP){
+		else if(event.getCode()== KeyCode.W){
 			map.getGrid().add(player1.getPlayer(), player1.getPos().getX(), player1.obenBewegen());;
 		}
-		else if(event.getCode()==KeyCode.DOWN){
+		else if(event.getCode()==KeyCode.S){
 			map.getGrid().add(player1.getPlayer(), player1.getPos().getX(), player1.untenBewegen());;
 		}
 		
@@ -57,20 +59,20 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			map.getGrid().add(player2.getPlayer(), player2.getPos().getX(), player2.getPos().getY());				
 		}
 		//Bombe legen
-		if(event.getCode()==KeyCode.E){
+		if(event.getCode()==KeyCode.SPACE){
 			map.getGrid().add(player2.getBomb().getBomb(), player2.getPos().getX(), player2.getPos().getY());
 		}
 		//Bewegungen
-		if(event.getCode()==KeyCode.A){
+		if(event.getCode()==KeyCode.LEFT){
 			map.getGrid().add(player2.getPlayer(),player2.linksBewegen(), player2.getPos().getY());
 		}
-		else if(event.getCode()== KeyCode.D){
+		else if(event.getCode()== KeyCode.RIGHT){
 			map.getGrid().add(player2.getPlayer(),player2.rechtsBewegen(), player2.getPos().getY());;
 		}
-		else if(event.getCode()== KeyCode.W){
+		else if(event.getCode()== KeyCode.UP){
 			map.getGrid().add(player2.getPlayer(), player2.getPos().getX(), player2.obenBewegen());;
 		}
-		else if(event.getCode()==KeyCode.S){
+		else if(event.getCode()==KeyCode.DOWN){
 			map.getGrid().add(player2.getPlayer(), player2.getPos().getX(), player2.untenBewegen());;
 		}
 		

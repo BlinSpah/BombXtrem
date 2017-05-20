@@ -16,13 +16,9 @@ public class Player {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
 		setPos(pos);
-<<<<<<< HEAD
-		player1 = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Player1.png")));
-		
-=======
 		setPlayer(imageView);
 		bomb = new Bombe();
->>>>>>> branch 'master' of https://github.com/BlinSpah/BombXtrem
+
 	}
 	public int linksBewegen(){
 		pos.setX(pos.getX()-1);
