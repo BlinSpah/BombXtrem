@@ -10,12 +10,13 @@ public class Player {
 	private Bombe bomb;
 	private Position pos;
 	private Collision collision;
-	private ImageView player1;
-	public Player(boolean tot,Position pos) {
+	private ImageView player;
+	
+	public Player(boolean tot,Position pos,ImageView imageView) {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
 		setPos(pos);
-		player1 = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Player1.png")));
+		setPlayer(imageView);
 		bomb = new Bombe();
 	}
 	public int linksBewegen(){
@@ -68,11 +69,11 @@ public class Player {
 	public void setPos(Position pos) {
 		this.pos = pos;
 	}
-	public ImageView getPlayer1() {
-		return player1;
+	public ImageView getPlayer() {
+		return player;
 	}
-	public void setPlayer1(ImageView player1) {
-		this.player1 = player1;
+	public void setPlayer(ImageView player) {
+		this.player = player;
 	}
 	public Bombe getBomb() {
 		return bomb;
