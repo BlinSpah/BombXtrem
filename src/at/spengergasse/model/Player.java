@@ -16,7 +16,7 @@ public class Player {
 		setTot(tot);
 		setPos(pos);
 		player1 = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Player1.png")));
-		bomb = new Bombe();
+		
 	}
 	public int linksBewegen(){
 		pos.setX(pos.getX()-1);
@@ -30,12 +30,17 @@ public class Player {
 	}
 	
 	public int obenBewegen(){
+		
+		
+		if(pos.getY()==0) return pos.getY()+2;
 		pos.setY(pos.getY()-1);
 		System.out.println(pos.getY());
 		return pos.getY();
 	}
 	
 	public int untenBewegen(){
+		
+		if(pos.getY()==12) return pos.getY()-2;
 		pos.setY(pos.getY()+1);
 		System.out.println(pos.getY());
 		return pos.getY();
@@ -44,8 +49,7 @@ public class Player {
 	
 	public void dropBomb(){
 		int bombenImSpiel = 0;
-		bomb.setPos(pos);
-			
+		bomb = new Bombe();
 		}
 	
 	
@@ -66,6 +70,7 @@ public class Player {
 	}
 	
 	public void setPos(Position pos) {
+		
 		this.pos = pos;
 	}
 	public ImageView getPlayer1() {

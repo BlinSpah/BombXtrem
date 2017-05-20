@@ -17,6 +17,7 @@ public class Bombe {
 		// TODO Auto-generated constructor stub
 		bomb = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png")));
 		powerups = new ArrayList<Powerup>();
+		explosion();
 	}
 	
 	public void addPowerup(Powerup powerup) throws PowerUpException{
@@ -24,7 +25,10 @@ public class Bombe {
 		powerups.add(powerup);
 	}
 	public void explosion(){
-		
+		long startzeit = System.currentTimeMillis() % 1000;
+		if(startzeit > 1000){
+			System.out.println("Bombe Explodiert");
+		}
 	}
 	
 	
