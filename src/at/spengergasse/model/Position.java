@@ -15,7 +15,10 @@ public class Position {
 	}
 
 	public void setX(int x) {
-		this.x = x;
+		if(x != 0 && x != 12 && y % 2 != 0 || x % 2 != 0 ){
+			this.x = x;
+		}
+		
 	}
 
 	public int getY() {
@@ -23,7 +26,10 @@ public class Position {
 	}
 
 	public void setY(int y) {
-		this.y = y;
+	
+		if(y !=0 && y != 12 && x % 2 != 0 || y % 2 != 0){
+			this.y = y;
+		}
 	}
 
 }
