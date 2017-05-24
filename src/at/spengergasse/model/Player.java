@@ -12,41 +12,41 @@ public class Player {
 	private Collision collision;
 	private ImageView player;
 	
+	private boolean left;
+	private boolean right;
+	private boolean up;
+	private boolean down;
+	
 	public Player(boolean tot,Position pos,ImageView imageView) {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
 		setPos(pos);
 		setPlayer(imageView);
+		imageView.setTranslateX(pos.getX());
+		imageView.setTranslateY(pos.getY());
 		bomb = new Bombe();
-
+		collision = new Collision();
 	}
-	public int linksBewegen(){
-		pos.setX(pos.getX()-1);
-		return pos.getX();
-	}
-	
-	public int rechtsBewegen(){
-		pos.setX(pos.getX()+1);
-		return pos.getX();
-		
+	public void linksBewegen(){
+		pos.setX(pos.getX()-2);
+		player.setTranslateX(pos.getX());
 	}
 	
-	public int obenBewegen(){
-		
-		
-		if(pos.getY()==0) return pos.getY()+2;
-		pos.setY(pos.getY()-1);
-		System.out.println(pos.getY());
-		return pos.getY();
+	public void rechtsBewegen(){
+		pos.setX(pos.getX()+2);
+		player.setTranslateX(pos.getX());
 	}
 	
-	public int untenBewegen(){
-		
-		if(pos.getY()==12) return pos.getY()-2;
-		pos.setY(pos.getY()+1);
-		System.out.println(pos.getY());
-		return pos.getY();
+	public void obenBewegen(){
+		pos.setY(pos.getY()-2);
+		player.setTranslateY(pos.getY());
 	}
+	
+	public void untenBewegen(){
+		pos.setY(pos.getY()+2);
+		player.setTranslateY(pos.getY());
+	}
+	
 	
 	
 	public void dropBomb(){
@@ -88,6 +88,39 @@ public class Player {
 		this.bomb = bomb;
 	}
 	
-
-
+	public ImageView getImageView() {
+		return this.player;
+	}
+	public boolean isLeft() {
+		return left;
+	}
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+	public boolean isRight() {
+		return right;
+	}
+	public void setRight(boolean right) {
+		this.right = right;
+	}
+	public boolean isUp() {
+		return up;
+	}
+	public void setUp(boolean up) {
+		this.up = up;
+	}
+	public boolean isDown() {
+		return down;
+	}
+	public void setDown(boolean down) {
+		this.down = down;
+	}
+	public int[][] getCollision() {
+		return collision.getCollision();
+	}
+	public void setCollision(Collision collision) {
+		this.collision = collision;
+	}
+	
+	
 }

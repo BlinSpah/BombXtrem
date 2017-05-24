@@ -15,10 +15,9 @@ public class Position {
 	}
 
 	public void setX(int x) {
-		if(x != 0 && x != 12 && y % 2 != 0 || x % 2 != 0 ){
+		if(this.x + x > 100 && this.x + x < 1100) {
 			this.x = x;
 		}
-		
 	}
 
 	public int getY() {
@@ -26,10 +25,14 @@ public class Position {
 	}
 
 	public void setY(int y) {
-	
-		if(y !=0 && y != 12 && x % 2 != 0 || y % 2 != 0){
+		if(this.y + y < 1100 && this.y + y > 100) {
 			this.y = y;
+		} else {
+			if(this.y < 55) {
+				this.y = 50;
+			}
 		}
+		
 	}
 
 }
