@@ -34,6 +34,7 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			//Player 
 			//Bombe legen
 			if(event.getCode()==KeyCode.E){
+				System.out.println("a");
 				map.getGrid().add(player1.getBomb().getBomb(), player1.getPos().getX(), player1.getPos().getY());
 			}
 			//Bewegungen

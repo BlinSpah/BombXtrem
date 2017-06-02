@@ -1,7 +1,5 @@
 package at.spengergasse.model;
 
-import at.spengergasse.gui.SimpleApplicationFX;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Player {
@@ -50,8 +48,7 @@ public class Player {
 	
 	
 	public void dropBomb(){
-		int bombenImSpiel = 0;
-		bomb = new Bombe();
+	
 		}
 	
 	

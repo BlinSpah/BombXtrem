@@ -6,8 +6,8 @@ public class Position {
 	
 	public Position(int x, int y) {
 		// TODO Auto-generated constructor stub
-		setX(x);
-		setY(y);
+		this.x=x;
+		this.y=y;
 	}
 
 	public int getX() {
