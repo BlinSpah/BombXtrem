@@ -1,5 +1,7 @@
 package at.spengergasse.gui;
 
+import org.omg.PortableServer.ServantRetentionPolicyValue;
+
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Position;
 import javafx.animation.AnimationTimer;
@@ -24,7 +26,7 @@ public class Map extends Stage {
 		Group root = new Group();
 		Player p = new Player(false, new Position(150, 50), new ImageView("/at/spengergasse/gui/Player1.png"));
 		grid = new GridPane();
-		listener = new SimpleActionListenerFX(this, p);
+		listener = new SimpleActionListenerFX(this, p, null);
 		grid.setStyle("-fx-background-color: #202020;");
 		this.uzb = new ImageView[81];
 		for (int i = 0; i < uzb.length; i++) {
