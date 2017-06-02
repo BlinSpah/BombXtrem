@@ -88,7 +88,7 @@ public class Map extends Stage {
 				for (int i = 0; i < coll.length; i++) {
 					for (int j = 0; j < grid.getChildren().size(); j++) {
 						if(p.getImageView().getTranslateY() + coll[i][1] >= grid.getChildren().get(j).getLayoutY()
-						   && p.getImageView().getTranslateY() + coll[i][1] <= grid.getChildren().get(j).getLayoutY() + 50) {
+						   && p.getImageView().getTranslateY() + coll[i][1] <= grid.getChildren().get(j).getLayoutY() + 45) {
 							if(p.getImageView().getTranslateX() + coll[i][0] == grid.getChildren().get(j).getLayoutX() 
 									&& p.isRight()) {
 								p.setRight(false);
@@ -99,17 +99,20 @@ public class Map extends Stage {
 								p.setLeft(false);
 								break;
 							}
-							if(p.getImageView().getTranslateY() + coll[i][0]  == grid.getChildren().get(j).getLayoutY() +50
+						}
+						
+						if(p.getImageView().getTranslateX() + coll[i][0] >= grid.getChildren().get(j).getLayoutX()
+								&& p.getImageView().getTranslateX() + coll[i][0] <= grid.getChildren().get(j).getLayoutX() + 50) {
+							if(p.getImageView().getTranslateY() + coll[0][0] == grid.getChildren().get(j).getLayoutY() + 50
 									&& p.isUp()) {
 								p.setUp(false);
 								break;
 							}
-							if(p.getImageView().getTranslateY() + coll[i][0] == grid.getChildren().get(j).getLayoutY() +50
+							if(p.getImageView().getTranslateY() + 46 == grid.getChildren().get(j).getLayoutY()
 									&& p.isDown()){
 								p.setDown(false);
 								break;
 							}
-							
 						}
 					}
 
@@ -125,7 +128,12 @@ public class Map extends Stage {
 					p.untenBewegen();
 				}
 				
+				
+				if(p.dropBomb()==true){
+				
+				}
 			}
+			
 		};
 		gl.start();
 

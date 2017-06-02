@@ -6,6 +6,7 @@ package at.spengergasse.gui;
 import at.spengergasse.model.*;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -35,7 +36,9 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			//Bombe legen
 			if(event.getCode()==KeyCode.E){
 				System.out.println("a");
-				map.getGrid().add(player1.getBomb().getBomb(), player1.getPos().getX(), player1.getPos().getY());
+				player1.dropBomb();
+				player1.getBomb().setBomb(new ImageView("/at/spengergasse/gui/Bombe.png"));
+			
 			}
 			//Bewegungen
 			if(event.getCode()==KeyCode.A){

@@ -1,5 +1,6 @@
 package at.spengergasse.model;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Player {
@@ -22,7 +23,6 @@ public class Player {
 		setPlayer(imageView);
 		imageView.setTranslateX(pos.getX());
 		imageView.setTranslateY(pos.getY());
-		bomb = new Bombe();
 		collision = new Collision();
 	}
 	public void linksBewegen(){
@@ -45,11 +45,14 @@ public class Player {
 		player.setTranslateY(pos.getY());
 	}
 	
-	
-	
-	public void dropBomb(){
-	
+	public boolean dropBomb(){
+		bomb = new Bombe();
+		if(bomb.getBombenCounter() >3){
+			return false;
 		}
+		
+		return true;	
+	}
 	
 	
 	public void playerTot(){

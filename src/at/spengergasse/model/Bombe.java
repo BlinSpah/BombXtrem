@@ -1,20 +1,18 @@
 package at.spengergasse.model;
 
-import java.util.ArrayList;
-
 import at.spengergasse.gui.SimpleApplicationFX;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Bombe {
-	private int bombenCounter =0;
+	private int bombenCounter=0;
 	private Fire bombFire;
 	private Position pos;
 	private ImageView bomb;
 	
 	public Bombe() {
 		// TODO Auto-generated constructor stub
-		bomb = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png")));
+		
 		
 	}
 		
