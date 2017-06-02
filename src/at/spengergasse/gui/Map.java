@@ -24,7 +24,7 @@ public class Map extends Stage {
 	public Map() {
 
 		Group root = new Group();
-		Player p = new Player(false, new Position(150, 50), new ImageView("/at/spengergasse/gui/Player1.png"));
+		Player p = new Player(false, new Position(50, 50), new ImageView("/at/spengergasse/gui/Player1.png"));
 		grid = new GridPane();
 		listener = new SimpleActionListenerFX(this, p, null);
 		grid.setStyle("-fx-background-color: #202020;");
@@ -78,7 +78,6 @@ public class Map extends Stage {
 				root.getChildren().add(grid);
 				root.getChildren().add(p.getImageView());
 
-
 				for (int i = 0; i < coll.length; i++) {
 					Rectangle r = new Rectangle(5, 5, Color.RED);
 					r.setTranslateX(coll[i][0] + p.getImageView().getTranslateX());
@@ -90,13 +89,33 @@ public class Map extends Stage {
 			private void update() {
 				for (int i = 0; i < coll.length; i++) {
 					for (int j = 0; j < grid.getChildren().size(); j++) {
-						if(p.getImageView().getTranslateX() + coll[i][0] < grid.getChildren().get(j).getTranslateX()) {
-							System.out.println(true);
+						if(p.getImageView().getTranslateY() + coll[i][1] >= grid.getChildren().get(j).getLayoutY()
+						   && p.getImageView().getTranslateY() + coll[i][1] <= grid.getChildren().get(j).getLayoutY() + 50) {
+							if(p.getImageView().getTranslateX() + coll[i][0] == grid.getChildren().get(j).getLayoutX() 
+									&& p.isRight()) {
+								p.setRight(false);
+								break;
+							}
+							if(p.getImageView().getTranslateX() + coll[i][0] == grid.getChildren().get(j).getLayoutX() + 50 
+									&& p.isLeft()) {
+								p.setLeft(false);
+								break;
+							}
+							if(p.getImageView().getTranslateY() + coll[i][0]  == grid.getChildren().get(j).getLayoutY() +50
+									&& p.isUp()) {
+								p.setUp(false);
+								break;
+							}
+							if(p.getImageView().getTranslateY() + coll[i][0] == grid.getChildren().get(j).getLayoutY() +50
+									&& p.isDown()){
+								p.setDown(false);
+								break;
+							}
+							
 						}
 					}
-					
+
 				}
-//				System.out.println(grid.getChildren().get(0));
 				if (p.isLeft() && !p.isRight()) {
 					p.linksBewegen();
 				} else if (p.isRight() && !p.isLeft()) {
@@ -107,7 +126,7 @@ public class Map extends Stage {
 				} else if (p.isDown() && !p.isUp()) {
 					p.untenBewegen();
 				}
-				// System.out.println(p.isRight());
+				
 			}
 		};
 		gl.start();

@@ -4,20 +4,20 @@ public class Collision {
 	private boolean hit;
 	
 	private int[][] collision = new int[][] {
-		{8,0},
+		{8,5},
 		{8,45},
-		{40,0},
+		{40,5},
 		{40,45}
 	};
 	
 	public Collision() {
 		// TODO Auto-generated constructor stub
 	}
-	public boolean isCollision() {
+	public boolean isHit() {
 		return hit;
 	}
-	public void setCollision(boolean collision) {
-		this.hit = collision;
+	public void setHit(boolean hit) {
+		this.hit = hit;
 	}
 	
 	public int[][] getCollision() {
