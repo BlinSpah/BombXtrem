@@ -1,7 +1,5 @@
 package at.spengergasse.gui;
 
-import org.omg.PortableServer.ServantRetentionPolicyValue;
-
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Position;
 import javafx.animation.AnimationTimer;
@@ -25,8 +23,9 @@ public class Map extends Stage {
 
 		Group root = new Group();
 		Player p = new Player(false, new Position(50, 50), new ImageView("/at/spengergasse/gui/Player1.png"));
+		Player p2 = new Player(false, new Position(550,550), new ImageView("/at/spengergasse/gui/Player2.png"));
 		grid = new GridPane();
-		listener = new SimpleActionListenerFX(this, p, null);
+		listener = new SimpleActionListenerFX(this, p,p2, null);
 		grid.setStyle("-fx-background-color: #202020;");
 		this.uzb = new ImageView[81];
 		for (int i = 0; i < uzb.length; i++) {
@@ -77,13 +76,7 @@ public class Map extends Stage {
 
 				root.getChildren().add(grid);
 				root.getChildren().add(p.getImageView());
-
-				for (int i = 0; i < coll.length; i++) {
-					Rectangle r = new Rectangle(5, 5, Color.RED);
-					r.setTranslateX(coll[i][0] + p.getImageView().getTranslateX());
-					r.setTranslateY(coll[i][1] + p.getImageView().getTranslateY());
-					root.getChildren().add(r);
-				}
+				root.getChildren().add(p2.getImageView());
 			}
 
 			private void update() {
@@ -95,14 +88,28 @@ public class Map extends Stage {
 									&& p.isRight()) {
 								p.setRight(false);
 								break;
-							}
+							}						
 							if(p.getImageView().getTranslateX() + coll[i][0] == grid.getChildren().get(j).getLayoutX() + 50 
 									&& p.isLeft()) {
 								p.setLeft(false);
 								break;
 							}
+							
 						}
-						
+						if(p2.getImageView().getTranslateY() + coll[i][1] >= grid.getChildren().get(j).getLayoutY()
+							&& p2.getImageView().getTranslateY() + coll[i][1] <= grid.getChildren().get(j).getLayoutY() + 45) {
+								if(p2.getImageView().getTranslateX() + coll[i][0] == grid.getChildren().get(j).getLayoutX() 
+									&& p2.isRight()) {
+										p2.setRight(false);
+										break;
+									}
+								if(p2.getImageView().getTranslateX() + coll[i][0] == grid.getChildren().get(j).getLayoutX() + 50 
+										&& p2.isLeft()) {
+											p2.setLeft(false);
+											break;
+									}
+							}	
+									
 						if(p.getImageView().getTranslateX() + coll[i][0] >= grid.getChildren().get(j).getLayoutX()
 								&& p.getImageView().getTranslateX() + coll[i][0] <= grid.getChildren().get(j).getLayoutX() + 50) {
 							if(p.getImageView().getTranslateY() + coll[0][0] == grid.getChildren().get(j).getLayoutY() + 50
@@ -116,8 +123,20 @@ public class Map extends Stage {
 								break;
 							}
 						}
+						if(p2.getImageView().getTranslateX() + coll[i][0] >= grid.getChildren().get(j).getLayoutX()
+								&& p2.getImageView().getTranslateX() + coll[i][0] <= grid.getChildren().get(j).getLayoutX() + 50) {
+							if(p2.getImageView().getTranslateY() + coll[0][0] == grid.getChildren().get(j).getLayoutY() + 50
+									&& p2.isUp()) {
+								p2.setUp(false);
+								break;
+							}
+							if(p2.getImageView().getTranslateY() + 46 == grid.getChildren().get(j).getLayoutY()
+									&& p2.isDown()){
+								p2.setDown(false);
+								break;
+							}
+						}
 					}
-
 				}
 				if (p.isLeft() && !p.isRight()) {
 					p.linksBewegen();
@@ -130,10 +149,21 @@ public class Map extends Stage {
 					p.untenBewegen();
 				}
 				
-				
-				if(p.dropBomb()==true){
-				
+				if (p2.isLeft() && !p2.isRight()) {
+					p2.linksBewegen();
+				} else if (p2.isRight() && !p2.isLeft()) {
+					p2.rechtsBewegen();
 				}
+				if (p2.isUp() && !p2.isDown()) {
+					p2.obenBewegen();
+				} else if (p2.isDown() && !p2.isUp()) {
+					p2.untenBewegen();
+				}
+				
+				
+				
+				
+				
 			}
 			
 		};

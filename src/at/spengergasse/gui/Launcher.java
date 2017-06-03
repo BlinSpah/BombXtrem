@@ -22,7 +22,7 @@ public class Launcher extends Stage {
 	public Launcher(){	
 
 		
-		listener=new SimpleActionListenerFX(null, null, this);
+		listener=new SimpleActionListenerFX(null,null, null, this);
 		VBox vBox=new VBox();
 		BorderPane borderPane=new BorderPane();
 		GridPane gridPane=new GridPane();

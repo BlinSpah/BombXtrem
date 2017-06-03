@@ -10,10 +10,10 @@ public class Bombe {
 	private Position pos;
 	private ImageView bomb;
 	
-	public Bombe() {
-		// TODO Auto-generated constructor stub
-		
-		
+	public Bombe(Position pos, ImageView image){
+		setPos(pos);
+		image.setTranslateX(pos.getX());
+		image.setTranslateY(pos.getY());
 	}
 		
 	public int getBombenCounter() {
@@ -38,6 +38,7 @@ public class Bombe {
 
 	public void setPos(Position pos) {
 		this.pos = pos;
+		
 	}
 
 	public ImageView getBomb() {

@@ -11,6 +11,7 @@ public class Player {
 	private Collision collision;
 	private ImageView player;
 	
+	private boolean setBomb;
 	private boolean left;
 	private boolean right;
 	private boolean up;
@@ -45,13 +46,8 @@ public class Player {
 		player.setTranslateY(pos.getY());
 	}
 	
-	public boolean dropBomb(){
-		bomb = new Bombe();
-		if(bomb.getBombenCounter() >3){
-			return false;
-		}
+	public void dropBomb(){
 		
-		return true;	
 	}
 	
 	

@@ -24,11 +24,11 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 	private Player player1;
 	private Player player2;
 
-	public SimpleActionListenerFX(Map map, Player player, Launcher launcher){
+	public SimpleActionListenerFX(Map map, Player player,Player p2, Launcher launcher){
 		this.launcher=launcher;
 		this.map=map;
 		player1 = player;
-		player2 = new Player(false,new Position(11,11),new javafx.scene.image.ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("player2.png"))));
+		player2 = p2;
 
 	}
 
@@ -58,16 +58,13 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			//Bombe legen
 			if(event.getCode()==KeyCode.E){
 				System.out.println("a");
-				player1.dropBomb();
-				player1.getBomb().setBomb(new ImageView("/at/spengergasse/gui/Bombe.png"));
-			
+				
 			}
 			//Bewegungen
 			if(event.getCode()==KeyCode.A){
 				player1.setLeft(true);
 			}
 			else if(event.getCode()== KeyCode.D){
-//				map.getGrid().add(player1.getPlayer(),player1.rechtsBewegen(), player1.getPos().getY());;
 				player1.setRight(true);
 			}
 			else if(event.getCode()== KeyCode.W){
@@ -77,42 +74,50 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 				player1.setDown(true);
 			}
 			
-			if(event.getCode()==KeyCode.ENTER){	
-//				map.getGrid().add(player2.getPlayer(), player2.getPos().getX(), player2.getPos().getY());				
-			}
 			//Bombe legen
 			if(event.getCode()==KeyCode.SPACE){
-				map.getGrid().add(player2.getBomb().getBomb(), player2.getPos().getX(), player2.getPos().getY());
 			}
 			//Bewegungen
 			if(event.getCode()==KeyCode.LEFT){
-//				map.getGrid().add(player2.getPlayer(),player2.linksBewegen(), player2.getPos().getY());
+				player2.setLeft(true);
 			}
 			else if(event.getCode()== KeyCode.RIGHT){
-//				map.getGrid().add(player2.getPlayer(),player2.rechtsBewegen(), player2.getPos().getY());;
+				player2.setRight(true);
 			}
 			else if(event.getCode()== KeyCode.UP){
-//				map.getGrid().add(player2.getPlayer(), player2.getPos().getX(), player2.obenBewegen());;
+				player2.setUp(true);
 			}
 			else if(event.getCode()==KeyCode.DOWN){
-//				map.getGrid().add(player2.getPlayer(), player2.getPos().getX(), player2.untenBewegen());;
+				player2.setDown(true);
 			}
 		} 
 		if(event.getEventType() == KeyEvent.KEY_RELEASED) {
 			if(event.getCode()==KeyCode.A){
 				player1.setLeft(false);
-				player1.setRight(false);
 			}
 			if(event.getCode()== KeyCode.D){
-//				map.getGrid().add(player1.getPlayer(),player1.rechtsBewegen(), player1.getPos().getY());;
 				player1.setRight(false);
-				player1.setLeft(false);
 			}
 			if(event.getCode()== KeyCode.W){
 				player1.setUp(false);
 			}
-			else if(event.getCode()==KeyCode.S){
+			if(event.getCode()==KeyCode.S){
 				player1.setDown(false);
+			}
+			if(event.getCode()==KeyCode.LEFT){
+				player2.setLeft(false);
+			}
+			if(event.getCode()== KeyCode.RIGHT){
+				player2.setRight(false);
+			}
+			if(event.getCode()== KeyCode.UP){
+				player2.setUp(false);
+			}
+			if(event.getCode()==KeyCode.DOWN){
+				player2.setDown(false);
+			}
+			if(event.getCode()==KeyCode.E){
+				
 			}
 		}
 	}
