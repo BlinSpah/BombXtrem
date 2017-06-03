@@ -1,5 +1,11 @@
 package at.spengergasse.model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -16,6 +22,9 @@ public class Player {
 	private boolean right;
 	private boolean up;
 	private boolean down;
+		
+	public static BufferedWriter bw;
+	public final String filename;
 	
 	public Player(boolean tot,Position pos,ImageView imageView) {
 		// TODO Auto-generated constructor stub
@@ -25,6 +34,13 @@ public class Player {
 		imageView.setTranslateX(pos.getX());
 		imageView.setTranslateY(pos.getY());
 		collision = new Collision();
+		filename = "logfile.txt";
+		try {
+			bw = new BufferedWriter(new FileWriter(filename));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void linksBewegen(){
 		pos.setX(pos.getX()-2);
@@ -51,8 +67,21 @@ public class Player {
 	}
 	
 	
-	public void playerTot(){
-		setTot(true);
+	public void save(String name, String name2) throws IOException{			
+		bw.write(name+";"+name2+"\n");
+		bw.close();
+	}
+
+
+	public void readAndPrintLog() throws IOException{
+		BufferedReader br=new BufferedReader(new FileReader(filename));
+		System.out.print("Matches gespielt\n");
+		String logString=br.readLine();
+		while(logString!=null){
+			System.out.println(logString);
+			logString=br.readLine();
+		}
+		br.close();
 	}
 	
 	public boolean isTot() {

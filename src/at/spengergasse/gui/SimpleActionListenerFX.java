@@ -3,6 +3,7 @@ package at.spengergasse.gui;
  * 
  */
 
+import java.io.IOException;
 import java.util.logging.Handler;
 
 import at.spengergasse.model.*;
@@ -38,12 +39,21 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 		Object source=arg0.getSource();
 		//Starte Spiel und schließe Launcher
 		if(source==launcher.getStartBTN()){
+					
 			new Map();
 			launcher.close();
 		}
 		//Schließe Launcher
 		if(source==launcher.getCloseBTN()){
 			launcher.close();
+		}
+		if(source==launcher.getLogFileBTN()){
+			try {
+				player1.readAndPrintLog();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
