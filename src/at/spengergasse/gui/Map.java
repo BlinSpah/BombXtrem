@@ -80,9 +80,7 @@ public class Map extends Stage {
 				if(p.isSetBomb()){
 					p.dropBomb(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
 					root.getChildren().add(p.getBomb().getBomb());
-					int x =p.getBomb().getBombenCounter();
-					
-						
+					int x =p.getBomb().getBombenCounter();	
 //						root.getChildren().remove(p.getBomb().getBomb());
 								
 					x++;

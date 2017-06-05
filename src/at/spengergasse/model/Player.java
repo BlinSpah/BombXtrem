@@ -64,7 +64,7 @@ public class Player {
 	
 	public boolean dropBomb(ImageView image){
 		if(bomb == null){
-		bomb = new Bombe(new Position(pos.getX(),pos.getY()), image);
+			bomb = new Bombe(new Position(pos.getX(),pos.getY()), image);
 		}
 		return true;
 	}

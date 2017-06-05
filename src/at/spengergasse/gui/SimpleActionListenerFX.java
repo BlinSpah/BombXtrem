@@ -6,15 +6,10 @@ package at.spengergasse.gui;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Handler;
 
 import at.spengergasse.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -76,8 +71,10 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 					@Override
 					public void run() {
 					    player1.setSetBomb(false);
+					    player1.setBomb(null);
 					  }
 					}, 2000l);
+				
 			}
 			//Bewegungen
 			if(event.getCode()==KeyCode.A){
