@@ -4,6 +4,8 @@ package at.spengergasse.gui;
  */
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Handler;
 
 import at.spengergasse.model.*;
@@ -68,7 +70,14 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			//Bombe legen
 			if(event.getCode()==KeyCode.E){
 				System.out.println("a");
-				
+				player1.setSetBomb(true);
+				Timer t = new Timer();
+				t.schedule(new TimerTask() {
+					@Override
+					public void run() {
+					    player1.setSetBomb(false);
+					  }
+					}, 2000l);
 			}
 			//Bewegungen
 			if(event.getCode()==KeyCode.A){
@@ -126,9 +135,7 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			if(event.getCode()==KeyCode.DOWN){
 				player2.setDown(false);
 			}
-			if(event.getCode()==KeyCode.E){
-				
-			}
+			
 		}
 	}
 }

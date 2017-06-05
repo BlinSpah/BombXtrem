@@ -77,6 +77,17 @@ public class Map extends Stage {
 				root.getChildren().add(grid);
 				root.getChildren().add(p.getImageView());
 				root.getChildren().add(p2.getImageView());
+				if(p.isSetBomb()){
+					p.dropBomb(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
+					root.getChildren().add(p.getBomb().getBomb());
+					int x =p.getBomb().getBombenCounter();
+					
+						
+//						root.getChildren().remove(p.getBomb().getBomb());
+								
+					x++;
+				}
+			
 			}
 
 			private void update() {
@@ -159,9 +170,6 @@ public class Map extends Stage {
 				} else if (p2.isDown() && !p2.isUp()) {
 					p2.untenBewegen();
 				}
-				
-				
-				
 				
 				
 			}

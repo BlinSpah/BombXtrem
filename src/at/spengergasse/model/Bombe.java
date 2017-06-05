@@ -12,6 +12,7 @@ public class Bombe {
 	
 	public Bombe(Position pos, ImageView image){
 		setPos(pos);
+		setBomb(image);
 		image.setTranslateX(pos.getX());
 		image.setTranslateY(pos.getY());
 	}

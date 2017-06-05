@@ -62,8 +62,11 @@ public class Player {
 		player.setTranslateY(pos.getY());
 	}
 	
-	public void dropBomb(){
-		
+	public boolean dropBomb(ImageView image){
+		if(bomb == null){
+		bomb = new Bombe(new Position(pos.getX(),pos.getY()), image);
+		}
+		return true;
 	}
 	
 	
@@ -84,6 +87,12 @@ public class Player {
 		br.close();
 	}
 	
+	public boolean isSetBomb() {
+		return setBomb;
+	}
+	public void setSetBomb(boolean setBomb) {
+		this.setBomb = setBomb;
+	}
 	public boolean isTot() {
 		return tot;
 	}
