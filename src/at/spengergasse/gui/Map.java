@@ -77,17 +77,17 @@ public class Map extends Stage {
 				root.getChildren().add(grid);
 				root.getChildren().add(p.getImageView());
 				root.getChildren().add(p2.getImageView());
+				
 				if(p.isSetBomb()){
 					p.dropBomb(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
 					root.getChildren().add(p.getBomb().getBomb());
-					int x =p.getBomb().getBombenCounter();	
-//						root.getChildren().remove(p.getBomb().getBomb());
-								
-					x++;
+//					if(p.getBomb().isExplodiert()){
+//						p.getBomb().explosion(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png"))));
+//						root.getChildren().add(p.getBomb().getBombFire().getImage());						
+//					}
 				}
-			
+				
 			}
-
 			private void update() {
 				for (int i = 0; i < coll.length; i++) {
 					for (int j = 0; j < grid.getChildren().size(); j++) {

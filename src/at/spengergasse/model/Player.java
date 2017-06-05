@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Player {
@@ -16,8 +15,8 @@ public class Player {
 	private Position pos;
 	private Collision collision;
 	private ImageView player;
-	
 	private boolean setBomb;
+	
 	private boolean left;
 	private boolean right;
 	private boolean up;
@@ -62,13 +61,11 @@ public class Player {
 		player.setTranslateY(pos.getY());
 	}
 	
-	public boolean dropBomb(ImageView image){
+	public void dropBomb(ImageView image){
 		if(bomb == null){
-			bomb = new Bombe(new Position(pos.getX(),pos.getY()), image);
+			bomb = new Bombe(pos, image);
 		}
-		return true;
 	}
-	
 	
 	public void save(String name, String name2) throws IOException{			
 		bw.write(name+";"+name2+"\n");

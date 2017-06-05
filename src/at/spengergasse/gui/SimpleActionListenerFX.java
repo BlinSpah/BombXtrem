@@ -35,8 +35,7 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 		// get component which is source of the event
 		Object source=arg0.getSource();
 		//Starte Spiel und schließe Launcher
-		if(source==launcher.getStartBTN()){
-					
+		if(source==launcher.getStartBTN()){				
 			new Map();
 			launcher.close();
 		}
@@ -64,14 +63,17 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			//Player 
 			//Bombe legen
 			if(event.getCode()==KeyCode.E){
-				System.out.println("a");
+				
 				player1.setSetBomb(true);
+				
 				Timer t = new Timer();
 				t.schedule(new TimerTask() {
 					@Override
 					public void run() {
+						player1.getBomb().setExplodiert(true);		
 					    player1.setSetBomb(false);
 					    player1.setBomb(null);
+					       
 					  }
 					}, 2000l);
 				

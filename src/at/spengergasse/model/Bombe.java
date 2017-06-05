@@ -1,14 +1,14 @@
 package at.spengergasse.model;
 
-import at.spengergasse.gui.SimpleApplicationFX;
-import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 
 public class Bombe {
-	private int bombenCounter=0;
+
 	private Fire bombFire;
 	private Position pos;
 	private ImageView bomb;
+	private boolean explodiert;
 	
 	public Bombe(Position pos, ImageView image){
 		setPos(pos);
@@ -16,15 +16,20 @@ public class Bombe {
 		image.setTranslateX(pos.getX());
 		image.setTranslateY(pos.getY());
 	}
+	
+	public void explosion(ImageView image){
+		if(bombFire == null){
+		bombFire = new Fire(pos,image,1,1,1,1);
+		}
 		
-	public int getBombenCounter() {
-		return bombenCounter;
 	}
-
-	public void setBombenCounter(int bombenCounter) {
-		this.bombenCounter = bombenCounter;
+	
+	public boolean isExplodiert() {
+		return explodiert;
 	}
-
+	public void setExplodiert(boolean explodiert) {
+		this.explodiert = explodiert;
+	}
 	public Fire getBombFire() {
 		return bombFire;
 	}
