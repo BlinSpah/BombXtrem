@@ -5,37 +5,15 @@ import javafx.scene.image.ImageView;
 
 public class Bombe {
 
-	private Fire bombFire;
+	
 	private Position pos;
 	private ImageView bomb;
-	private boolean explodiert;
 	
 	public Bombe(Position pos, ImageView image){
 		setPos(pos);
 		setBomb(image);
-		image.setTranslateX(pos.getX());
-		image.setTranslateY(pos.getY());
-	}
-	
-	public void explosion(ImageView image){
-		if(bombFire == null){
-		bombFire = new Fire(pos,image,1,1,1,1);
-		}
-		
-	}
-	
-	public boolean isExplodiert() {
-		return explodiert;
-	}
-	public void setExplodiert(boolean explodiert) {
-		this.explodiert = explodiert;
-	}
-	public Fire getBombFire() {
-		return bombFire;
-	}
-
-	public void setBombFire(Fire bombFire) {
-		this.bombFire = bombFire;
+		image.setTranslateX((pos.getX()/50)*50);
+		image.setTranslateY((pos.getY()/50)*50);
 	}
 
 	public Position getPos() {

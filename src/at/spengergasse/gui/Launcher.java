@@ -4,7 +4,6 @@ package at.spengergasse.gui;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -54,8 +52,8 @@ public class Launcher extends Stage {
 		fp.setPadding(new Insets(5,5,5,50));
 		
 		gridPane.add(startBTN, 9, 1);
-		gridPane.add(closeBTN, 9, 3);
 		gridPane.add(logFileBTN, 9, 2);
+		gridPane.add(closeBTN, 9, 3);	
 		borderPane.setTop(fp);
 		borderPane.setCenter(gridPane);	
 	

@@ -12,10 +12,13 @@ public class Player {
 
 	private boolean tot;
 	private Bombe bomb;
+	private Fire bombFire;
 	private Position pos;
+	private Position bombPos;
 	private Collision collision;
 	private ImageView player;
 	private boolean setBomb;
+	private boolean explodiert;
 	
 	private boolean left;
 	private boolean right;
@@ -25,13 +28,13 @@ public class Player {
 	public static BufferedWriter bw;
 	public final String filename;
 	
-	public Player(boolean tot,Position pos,ImageView imageView) {
+	public Player(boolean tot,Position pos,ImageView image) {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
 		setPos(pos);
-		setPlayer(imageView);
-		imageView.setTranslateX(pos.getX());
-		imageView.setTranslateY(pos.getY());
+		setPlayer(image);
+		image.setTranslateX(pos.getX());
+		image.setTranslateY(pos.getY());
 		collision = new Collision();
 		filename = "logfile.txt";
 		try {
@@ -63,10 +66,17 @@ public class Player {
 	
 	public void dropBomb(ImageView image){
 		if(bomb == null){
-			bomb = new Bombe(pos, image);
+			bomb = new Bombe(new Position(pos.getX(), pos.getY()), image);
+			bombPos = bomb.getPos();
 		}
 	}
 	
+	public void explosion(ImageView image){
+		if(bombFire == null){
+		bombFire = new Fire(bombPos,image);
+		}
+		
+	}
 	public void save(String name, String name2) throws IOException{			
 		bw.write(name+";"+name2+"\n");
 		bw.close();
@@ -84,6 +94,27 @@ public class Player {
 		br.close();
 	}
 	
+	public boolean isExplodiert() {
+		return explodiert;
+	}
+	
+	public void setExplodiert(boolean explodiert) {
+		this.explodiert = explodiert;
+	}
+	
+	public Fire getBombFire() {
+		return bombFire;
+	}
+
+	public void setBombFire(Fire bombFire) {
+		this.bombFire = bombFire;
+	}
+	public Position getBombPos() {
+		return bombPos;
+	}
+	public void setBombPos(Position bombPos) {
+		this.bombPos = bombPos;
+	}
 	public boolean isSetBomb() {
 		return setBomb;
 	}

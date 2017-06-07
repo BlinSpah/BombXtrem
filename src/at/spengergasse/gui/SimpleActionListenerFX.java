@@ -57,23 +57,29 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 	public void handle(KeyEvent event){
 		if(event.getEventType() == KeyEvent.KEY_PRESSED) {
 			if(event.getCode()==KeyCode.ENTER){	
-//				map.getGrid().add(player1.getPlayer(), player1.getPos().getX(), player1.getPos().getY());				
+		
 			}
 			
 			//Player 
 			//Bombe legen
-			if(event.getCode()==KeyCode.E){
-				
+			if(event.getCode()==KeyCode.E){			
 				player1.setSetBomb(true);
-				
 				Timer t = new Timer();
+				//Wie lange die Bombe auf dem Feld bleibt bis sie explodiert
 				t.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player1.getBomb().setExplodiert(true);		
+						player1.setExplodiert(true);		
 					    player1.setSetBomb(false);
 					    player1.setBomb(null);
-					       
+					    //Wie lange die Flammen auf dem Feld bleiben
+					    t.schedule(new TimerTask(){
+					    	@Override
+					    	public void run(){
+					    		player1.setExplodiert(false);
+					    		player1.setBombFire(null);
+					    	}
+					    }, 1000l);
 					  }
 					}, 2000l);
 				
@@ -94,6 +100,24 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 			
 			//Bombe legen
 			if(event.getCode()==KeyCode.SPACE){
+				player2.setSetBomb(true);
+				Timer t = new Timer();
+				t.schedule(new TimerTask() {
+					@Override
+					public void run() {
+						player2.setExplodiert(true);		
+					    player2.setSetBomb(false);
+					    player2.setBomb(null);
+					    
+					    t.schedule(new TimerTask(){
+					    	@Override
+					    	public void run(){
+					    		player2.setExplodiert(false);
+					    		player2.setBombFire(null);
+					    	}
+					    }, 1000l);
+					  }
+					}, 2000l);
 			}
 			//Bewegungen
 			if(event.getCode()==KeyCode.LEFT){

@@ -9,22 +9,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
 import javafx.stage.Stage;
 
 public class Map extends Stage {
 
 	final private ImageView[] uzb;
 	final private SimpleActionListenerFX listener;
-	final private GridPane grid;
 
 	public Map() {
 
 		Group root = new Group();
 		Player p = new Player(false, new Position(50, 50), new ImageView("/at/spengergasse/gui/Player1.png"));
 		Player p2 = new Player(false, new Position(550,550), new ImageView("/at/spengergasse/gui/Player2.png"));
-		grid = new GridPane();
+		GridPane grid = new GridPane();
 		listener = new SimpleActionListenerFX(this, p,p2, null);
 		grid.setStyle("-fx-background-color: #202020;");
 		this.uzb = new ImageView[81];
@@ -33,19 +31,21 @@ public class Map extends Stage {
 					new Image(SimpleApplicationFX.class.getResourceAsStream("UnzerstoerbarerBlock.png")));
 		}
 		int[][] coll = p.getCollision();
-		// add den Rand
-
+		
 		AnimationTimer gl = new AnimationTimer() {
 
 			@Override
 			public void handle(long now) {
 				update();
 				render();
+				
 			}
 
 			private void render() {
 				root.getChildren().clear();
 				grid.getChildren().clear();
+				// Die Map
+				// add den Rand
 				for (int i = 0; i <= 12; i++)
 					grid.add(uzb[i], 0, i);
 
@@ -75,22 +75,90 @@ public class Map extends Stage {
 					grid.add(uzb[75 + i], i + i, 10);
 
 				root.getChildren().add(grid);
-				root.getChildren().add(p.getImageView());
-				root.getChildren().add(p2.getImageView());
 				
+				if(!p.isTot()){
+					root.getChildren().add(p.getImageView());
+				}
+				
+				if(!p2.isTot()){
+					root.getChildren().add(p2.getImageView());
+				}
+				//Player1
+				// Bombe setzen
 				if(p.isSetBomb()){
 					p.dropBomb(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
 					root.getChildren().add(p.getBomb().getBomb());
-//					if(p.getBomb().isExplodiert()){
-//						p.getBomb().explosion(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png"))));
-//						root.getChildren().add(p.getBomb().getBombFire().getImage());						
-//					}
 				}
-				
+				// Wenn bombe Explodiert ist, Feuer einfügen und prüfen ob es den Player trifft
+				if(p.isExplodiert()){
+					p.explosion(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png"))));
+					//Die Spalte mit Flammen ausfüllen
+					if(p.getBombFire().getImage().getTranslateY() % 20 != 0) {
+						for(int i = 50; i < 600; i += 50){
+							ImageView image = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png")));
+							image.setTranslateX(i);
+							image.setTranslateY(p.getBombFire().getImage().getTranslateY());
+							root.getChildren().add(image);			
+						}
+					}	
+					//Die Reihe mit Flammen ausfüllen
+					if(p.getBombFire().getImage().getTranslateX() % 20 != 0) {					
+						for(int i = 50; i < 600; i += 50){
+							ImageView image = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png")));
+							image.setTranslateX(p.getBombFire().getImage().getTranslateX());
+							image.setTranslateY(i);
+							root.getChildren().add(image);
+							if(image.getTranslateX() == p.getPlayer().getTranslateX() ||
+							   image.getTranslateY() == p.getPlayer().getTranslateY()){
+										p.setTot(true);
+									}
+							else if(image.getTranslateX() == p2.getPlayer().getTranslateX() &&
+							   image.getTranslateY() == p2.getPlayer().getTranslateY()){
+										p2.setTot(true); 
+									}
+								}
+							}
+						}	
+				//Player2
+				if(p2.isSetBomb()){
+					p2.dropBomb(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
+					root.getChildren().add(p2.getBomb().getBomb());
+				}
+				if(p2.isExplodiert()){
+					p2.explosion(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png"))));
+					ImageView im = p2.getBombFire().getImage();
+					if(p2.getBombFire().getImage().getTranslateY() % 20 != 0) {
+						for(int i = 50; i < 600; i += 50){
+							ImageView image = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png")));
+							image.setTranslateX(i);
+							image.setTranslateY(im.getTranslateY());
+							root.getChildren().add(image);
+							
+						}
+					}
+					
+					if(p2.getBombFire().getImage().getTranslateX() % 20 != 0) {				
+						for(int i = 50; i < 600; i += 50){
+							ImageView image = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png")));
+							image.setTranslateX(im.getTranslateX());
+							image.setTranslateY(i);
+							root.getChildren().add(image);	
+							if(image.getTranslateX() == p2.getPlayer().getTranslateX() || 
+							   image.getTranslateY() == p2.getPlayer().getTranslateY()){
+										p2.setTot(true);
+									}
+									if(image.getTranslateX() == p.getPlayer().getTranslateX() &&
+									   image.getTranslateY() == p.getPlayer().getTranslateY()){
+										p.setTot(true); 
+										}
+									}
+								}
+						}									
 			}
 			private void update() {
 				for (int i = 0; i < coll.length; i++) {
 					for (int j = 0; j < grid.getChildren().size(); j++) {
+						//Collisions links und rechts mit den Blöcken
 						if(p.getImageView().getTranslateY() + coll[i][1] >= grid.getChildren().get(j).getLayoutY()
 						   && p.getImageView().getTranslateY() + coll[i][1] <= grid.getChildren().get(j).getLayoutY() + 45) {
 							if(p.getImageView().getTranslateX() + coll[i][0] == grid.getChildren().get(j).getLayoutX() 
@@ -118,7 +186,7 @@ public class Map extends Stage {
 											break;
 									}
 							}	
-									
+						//Collisions oben und unten mit den Blöcken
 						if(p.getImageView().getTranslateX() + coll[i][0] >= grid.getChildren().get(j).getLayoutX()
 								&& p.getImageView().getTranslateX() + coll[i][0] <= grid.getChildren().get(j).getLayoutX() + 50) {
 							if(p.getImageView().getTranslateY() + coll[0][0] == grid.getChildren().get(j).getLayoutY() + 50
@@ -147,6 +215,7 @@ public class Map extends Stage {
 						}
 					}
 				}
+				//Spielerbewegungen
 				if (p.isLeft() && !p.isRight()) {
 					p.linksBewegen();
 				} else if (p.isRight() && !p.isLeft()) {
@@ -182,10 +251,6 @@ public class Map extends Stage {
 		scene.addEventHandler(KeyEvent.KEY_RELEASED, listener);
 		setScene(scene);
 		show();
-	}
-
-	public GridPane getGrid() {
-		return grid;
 	}
 
 }
