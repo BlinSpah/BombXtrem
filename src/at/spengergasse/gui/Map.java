@@ -3,7 +3,6 @@ package at.spengergasse.gui;
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Position;
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -16,7 +15,6 @@ public class Map extends Stage {
 
 	final private ImageView[] uzb;
 	final private SimpleActionListenerFX listener;
-	private Stage gameOver;
 	public Map() {
 
 		Group root = new Group();
@@ -116,20 +114,21 @@ public class Map extends Stage {
 										p.setTot(true);
 									}
 								}
+							
 								//prüfen ob es den Gegner trifft
+								
 								if(p2.getImageView().getTranslateY()  >= image.getTranslateY()
 										&& p2.getImageView().getTranslateY()  <= image.getTranslateY() + 45) {
 										if(p2.getImageView().getTranslateX()  == image.getTranslateX() 
 											|| p2.getImageView().getTranslateY() == image.getTranslateX()){
 											p2.setTot(true);
 										}
-								}
+									}
+							}
 							}
 						}
-					}
 				}
-						
-				
+										
 				//Player2
 				if(p2.isSetBomb()){
 					p2.dropBomb(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
@@ -175,7 +174,6 @@ public class Map extends Stage {
 										}
 									}
 							}
-							
 						}
 					}
 				}									
@@ -261,14 +259,11 @@ public class Map extends Stage {
 					p2.obenBewegen();
 				} else if (p2.isDown() && !p2.isUp()) {
 					p2.untenBewegen();
-				}
-				
-				
-			}
-			
+				}	
+			}		
 		};
 		gl.start();
-		
+		getIcons().add((new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
 		setTitle("BombXtrem");
 		setResizable(false);
 		Scene scene = new Scene(root, 640, 640);

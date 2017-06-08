@@ -1,10 +1,5 @@
 package at.spengergasse.model;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import javafx.scene.image.ImageView;
 
@@ -17,6 +12,7 @@ public class Player {
 	private Position bombPos;
 	private Collision collision;
 	private ImageView player;
+	
 	private boolean setBomb;
 	private boolean explodiert;
 	
@@ -24,10 +20,6 @@ public class Player {
 	private boolean right;
 	private boolean up;
 	private boolean down;
-		
-	public static BufferedWriter bw;
-	public final String filename;
-	
 	public Player(boolean tot,Position pos,ImageView image) {
 		// TODO Auto-generated constructor stub
 		setTot(tot);
@@ -36,13 +28,7 @@ public class Player {
 		image.setTranslateX(pos.getX());
 		image.setTranslateY(pos.getY());
 		collision = new Collision();
-		filename = "logfile.txt";
-		try {
-			bw = new BufferedWriter(new FileWriter(filename));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	public void linksBewegen(){
 		pos.setX(pos.getX()-2);
@@ -76,22 +62,6 @@ public class Player {
 		bombFire = new Fire(bombPos,image);
 		}
 		
-	}
-	public void save(String name, String name2) throws IOException{			
-		bw.write(name+";"+name2+"\n");
-		bw.close();
-	}
-
-
-	public void readAndPrintLog() throws IOException{
-		BufferedReader br=new BufferedReader(new FileReader(filename));
-		System.out.print("Matches gespielt\n");
-		String logString=br.readLine();
-		while(logString!=null){
-			System.out.println(logString);
-			logString=br.readLine();
-		}
-		br.close();
 	}
 	
 	public boolean isExplodiert() {

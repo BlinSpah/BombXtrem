@@ -21,12 +21,14 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 	final private Map map;
 	private Player player1;
 	private Player player2;
+	private Verwaltung v;
 
 	public SimpleActionListenerFX(Map map, Player player,Player p2, Launcher launcher){
 		this.launcher=launcher;
 		this.map=map;
 		player1 = player;
 		player2 = p2;
+		v = new Verwaltung();
 
 	}
 
@@ -35,7 +37,13 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 		// get component which is source of the event
 		Object source=arg0.getSource();
 		//Starte Spiel und schließe Launcher
-		if(source==launcher.getStartBTN()){				
+		if(source==launcher.getStartBTN()){		
+			try {
+				v.save(launcher.getPlayer1().getText(),launcher.getPlayer2().getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			new Map();
 			launcher.close();
 		}
@@ -45,7 +53,8 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 		}
 		if(source==launcher.getLogFileBTN()){
 			try {
-				player1.readAndPrintLog();
+				v.readAndPrintLog();
+				v.openFile();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,7 +85,7 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 					    		player1.setExplodiert(false);
 					    		
 					    	}
-					    }, 1500l);
+					    }, 2001l);
 					  }
 					}, 2000l);
 				
