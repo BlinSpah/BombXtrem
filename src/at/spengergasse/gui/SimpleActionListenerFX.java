@@ -56,10 +56,6 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 	@Override
 	public void handle(KeyEvent event){
 		if(event.getEventType() == KeyEvent.KEY_PRESSED) {
-			if(event.getCode()==KeyCode.ENTER){	
-		
-			}
-			
 			//Player 
 			//Bombe legen
 			if(event.getCode()==KeyCode.E){			
@@ -76,10 +72,11 @@ public class SimpleActionListenerFX implements EventHandler<KeyEvent> {
 					    t.schedule(new TimerTask(){
 					    	@Override
 					    	public void run(){
-					    		player1.setExplodiert(false);
 					    		player1.setBombFire(null);
+					    		player1.setExplodiert(false);
+					    		
 					    	}
-					    }, 1000l);
+					    }, 1500l);
 					  }
 					}, 2000l);
 				

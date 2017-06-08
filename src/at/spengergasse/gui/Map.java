@@ -3,20 +3,20 @@ package at.spengergasse.gui;
 import at.spengergasse.model.Player;
 import at.spengergasse.model.Position;
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-
 import javafx.stage.Stage;
 
 public class Map extends Stage {
 
 	final private ImageView[] uzb;
 	final private SimpleActionListenerFX listener;
-
+	private Stage gameOver;
 	public Map() {
 
 		Group root = new Group();
@@ -38,7 +38,7 @@ public class Map extends Stage {
 			public void handle(long now) {
 				update();
 				render();
-				
+			
 			}
 
 			private void render() {
@@ -74,15 +74,14 @@ public class Map extends Stage {
 				for (int i = 1; i <= 5; i++)
 					grid.add(uzb[75 + i], i + i, 10);
 
-				root.getChildren().add(grid);
-				
-				if(!p.isTot()){
-					root.getChildren().add(p.getImageView());
+				root.getChildren().add(grid);	
+				root.getChildren().add(p.getImageView());	
+				root.getChildren().add(p2.getImageView());
+				if(p.isTot() || p2.isTot()){
+						close();
 				}
 				
-				if(!p2.isTot()){
-					root.getChildren().add(p2.getImageView());
-				}
+		
 				//Player1
 				// Bombe setzen
 				if(p.isSetBomb()){
@@ -108,17 +107,29 @@ public class Map extends Stage {
 							image.setTranslateX(p.getBombFire().getImage().getTranslateX());
 							image.setTranslateY(i);
 							root.getChildren().add(image);
-							if(image.getTranslateX() == p.getPlayer().getTranslateX() ||
-							   image.getTranslateY() == p.getPlayer().getTranslateY()){
+							//prüfen ob es den eigenen spieler trifft
+							for(int x = 0; x< coll.length; x++){
+								if(p.getImageView().getTranslateY()  >= image.getTranslateY()
+									&& p.getImageView().getTranslateY()  <= image.getTranslateY() + 45) {
+									if(p.getImageView().getTranslateX()  == image.getTranslateX() 
+										|| p.getImageView().getTranslateY() == image.getTranslateX()){
 										p.setTot(true);
 									}
-							else if(image.getTranslateX() == p2.getPlayer().getTranslateX() &&
-							   image.getTranslateY() == p2.getPlayer().getTranslateY()){
-										p2.setTot(true); 
-									}
+								}
+								//prüfen ob es den Gegner trifft
+								if(p2.getImageView().getTranslateY()  >= image.getTranslateY()
+										&& p2.getImageView().getTranslateY()  <= image.getTranslateY() + 45) {
+										if(p2.getImageView().getTranslateX()  == image.getTranslateX() 
+											|| p2.getImageView().getTranslateY() == image.getTranslateX()){
+											p2.setTot(true);
+										}
 								}
 							}
-						}	
+						}
+					}
+				}
+						
+				
 				//Player2
 				if(p2.isSetBomb()){
 					p2.dropBomb(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Bombe.png"))));
@@ -126,36 +137,50 @@ public class Map extends Stage {
 				}
 				if(p2.isExplodiert()){
 					p2.explosion(new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png"))));
-					ImageView im = p2.getBombFire().getImage();
+				
+					//Spalte füllen
 					if(p2.getBombFire().getImage().getTranslateY() % 20 != 0) {
 						for(int i = 50; i < 600; i += 50){
 							ImageView image = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png")));
 							image.setTranslateX(i);
-							image.setTranslateY(im.getTranslateY());
+							image.setTranslateY(p2.getBombFire().getImage().getTranslateY());
 							root.getChildren().add(image);
 							
 						}
 					}
 					
-					if(p2.getBombFire().getImage().getTranslateX() % 20 != 0) {				
+					if(p2.getBombFire().getImage().getTranslateX() % 20 != 0) {			
+						//Reihe füllen
 						for(int i = 50; i < 600; i += 50){
 							ImageView image = new ImageView(new Image(SimpleApplicationFX.class.getResourceAsStream("Fire.png")));
-							image.setTranslateX(im.getTranslateX());
+							image.setTranslateX(p2.getBombFire().getImage().getTranslateX());
 							image.setTranslateY(i);
 							root.getChildren().add(image);	
-							if(image.getTranslateX() == p2.getPlayer().getTranslateX() || 
-							   image.getTranslateY() == p2.getPlayer().getTranslateY()){
+							
+							//prüfen ob es den Spieler trifft
+							for(int x = 0; x< coll.length; x++){
+								if(p2.getImageView().getTranslateY()  >= image.getTranslateY()
+									&& p2.getImageView().getTranslateY()  <= image.getTranslateY() + 45) {
+									if(p2.getImageView().getTranslateX()  == image.getTranslateX() 
+										|| p2.getImageView().getTranslateY() == image.getTranslateX()){
 										p2.setTot(true);
 									}
-									if(image.getTranslateX() == p.getPlayer().getTranslateX() &&
-									   image.getTranslateY() == p.getPlayer().getTranslateY()){
-										p.setTot(true); 
+								}
+								//prüfen ob es den Gegner trifft
+								if(p.getImageView().getTranslateY()  >= image.getTranslateY()
+										&& p.getImageView().getTranslateY()  <= image.getTranslateY() + 45) {
+										if(p.getImageView().getTranslateX()  == image.getTranslateX() 
+											|| p.getImageView().getTranslateY() == image.getTranslateX()){
+											p.setTot(true);
 										}
 									}
-								}
-						}									
+							}
+							
+						}
+					}
+				}									
 			}
-			private void update() {
+			private void update() {			
 				for (int i = 0; i < coll.length; i++) {
 					for (int j = 0; j < grid.getChildren().size(); j++) {
 						//Collisions links und rechts mit den Blöcken
@@ -243,7 +268,7 @@ public class Map extends Stage {
 			
 		};
 		gl.start();
-
+		
 		setTitle("BombXtrem");
 		setResizable(false);
 		Scene scene = new Scene(root, 640, 640);
